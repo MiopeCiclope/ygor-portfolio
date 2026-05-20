@@ -2,259 +2,226 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=1440">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ygor França</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+    :root {
+      --px: clamp(1.25rem, 4.17vw, 3.75rem); /* horizontal page padding */
+      --gap: clamp(1.5rem, 4vw, 4rem);
+      --color-dark:  #252525;
+      --color-grey:  #5b5b5b;
+      --color-muted: #9c9a9a;
+    }
+
     body {
       font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
       background: #fff;
-      width: 1440px;
+      max-width: 1440px;
       margin: 0 auto;
-      overflow-x: hidden;
     }
 
-    /* ── HERO ─────────────────────────────────────────── */
+    img { display: block; max-width: 100%; }
+
+    /* ── HERO ──────────────────────────────────────────────────── */
     .hero {
       position: relative;
-      width: 1440px;
-      height: 1175px;
+      width: 100%;
+      aspect-ratio: 1440 / 1175;
+      min-height: 100svh;
       overflow: hidden;
     }
 
     .hero__bg {
       position: absolute;
-      left: -210px;
-      top: -2px;
-      width: 1859px;
-      height: 1178px;
+      inset: 0;
+      width: 100%;
+      height: 100%;
       object-fit: cover;
-      object-position: center;
+      object-position: center 20%;
+    }
+
+    .hero__inner {
+      position: relative;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 13% var(--px) 3%;
     }
 
     .hero__title {
-      position: absolute;
-      left: 60px;
-      top: 149px;
-      font-size: 120px;
+      font-size: clamp(2.5rem, 8.33vw, 7.5rem);
       font-weight: 500;
       color: #fff;
       letter-spacing: -0.02em;
       line-height: 1;
-      white-space: nowrap;
     }
 
     .hero__divider {
-      position: absolute;
-      left: 0;
-      top: 919px;
-      width: 1440px;
+      width: 100%;
       height: 1px;
       background: rgba(255, 255, 255, 0.6);
+      margin-bottom: 1.5%;
     }
 
-    .hero__tagline-light {
-      position: absolute;
-      left: 776px;
-      top: 937px;
-      font-size: 100px;
+    /* "ELEVE A SUA" is offset ~54% right to match the Figma stagger */
+    .hero__tagline-top {
+      display: block;
+      padding-left: 54%;
+      font-size: clamp(1.5rem, 6.94vw, 6.25rem);
       font-weight: 300;
       color: #fff;
       letter-spacing: -0.02em;
-      line-height: 1;
-      white-space: nowrap;
+      line-height: 1.05;
     }
 
-    .hero__tagline-bold {
-      position: absolute;
-      left: 60px;
-      top: 1036px;
-      font-size: 100px;
+    .hero__tagline-bottom {
+      display: block;
+      font-size: clamp(1.5rem, 6.94vw, 6.25rem);
       font-weight: 500;
       color: #fff;
       letter-spacing: -0.02em;
-      line-height: 1;
-      white-space: nowrap;
+      line-height: 1.05;
     }
 
-    .hero__gradient-overlay {
-      position: absolute;
-      left: 844px;
-      top: 1022px;
-      width: 596px;
-      height: 153px;
-      background: linear-gradient(to bottom, rgba(0,0,0,0.6), transparent);
-      pointer-events: none;
-    }
-
-    /* ── ARTIST ───────────────────────────────────────── */
+    /* ── ARTIST ────────────────────────────────────────────────── */
     .artist {
-      position: relative;
-      width: 1440px;
-      height: 1163px;
-      background: #fff;
+      padding: var(--gap) var(--px) calc(var(--gap) * 1.5);
     }
 
     .artist__label {
-      position: absolute;
-      left: 60px;
-      top: 0;
-      font-size: 41px;
+      font-size: clamp(1.25rem, 2.85vw, 2.5rem);
       font-weight: 300;
-      color: #5b5b5b;
+      color: var(--color-grey);
       letter-spacing: 0.04em;
-      padding-top: 40px;
+      margin-bottom: var(--gap);
+    }
+
+    .artist__body {
+      display: flex;
+      align-items: flex-start;
+      gap: clamp(1.5rem, 7.78vw, 7rem);
     }
 
     .artist__portrait {
-      position: absolute;
-      left: 60px;
-      top: 155px;
-      width: 336px;
-      height: 1008px;
+      width: 23.33%;
+      aspect-ratio: 1 / 3;
       object-fit: cover;
       object-position: top center;
+      flex-shrink: 0;
+    }
+
+    .artist__texts {
+      flex: 1;
+      min-width: 0;
     }
 
     .artist__bio1 {
-      position: absolute;
-      left: 508px;
-      top: 200px;
-      width: 872px;
-      font-size: 36px;
+      font-size: clamp(1rem, 2.5vw, 2.25rem);
       font-weight: 500;
-      color: #5b5b5b;
+      color: var(--color-grey);
       line-height: 1.35;
+      margin-bottom: var(--gap);
     }
 
     .artist__bio2 {
-      position: absolute;
-      left: 508px;
-      top: 622px;
-      width: 872px;
-      font-size: 34px;
+      font-size: clamp(0.9rem, 2.36vw, 2.125rem);
       font-weight: 500;
-      color: #9c9a9a;
+      color: var(--color-muted);
       line-height: 1.45;
     }
 
-    /* ── PORTFOLIO ────────────────────────────────────── */
+    /* ── PORTFOLIO ─────────────────────────────────────────────── */
     .portfolio {
-      position: relative;
-      width: 1440px;
-      height: 1218px;
-      background: #252525;
+      background: var(--color-dark);
+      padding: calc(var(--gap) * 1.5) var(--px) calc(var(--gap) * 2.5);
     }
 
     .portfolio__grid {
-      position: absolute;
-      left: 174px;
-      top: 88px;
       display: grid;
-      grid-template-columns: 318px 318px 318px;
-      grid-template-rows: 425px 425px;
-      column-gap: 69px;
-      row-gap: 49px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(0.5rem, 3.5vw, 3rem);
+      margin-bottom: var(--gap);
     }
 
     .portfolio__grid img {
-      width: 318px;
-      height: 425px;
+      width: 100%;
+      aspect-ratio: 3 / 4;
       object-fit: cover;
-      display: block;
     }
 
     .portfolio__cta {
-      position: absolute;
-      left: 549px;
-      top: 1074px;
+      display: flex;
+      justify-content: center;
     }
 
-    /* ── CONTACT ──────────────────────────────────────── */
+    /* ── CONTACT ───────────────────────────────────────────────── */
     .contact {
-      position: relative;
-      width: 1440px;
-      height: 770px;
-      background: #fff;
+      display: flex;
+      align-items: flex-start;
+      gap: clamp(1.5rem, 5.56vw, 5rem);
+      padding: calc(var(--gap) * 1.5) var(--px);
+    }
+
+    .contact__left {
+      flex: 1;
+      min-width: 0;
     }
 
     .contact__title {
-      position: absolute;
-      left: 60px;
-      top: 100px;
-      font-size: 41px;
+      font-size: clamp(1.25rem, 2.85vw, 2.5rem);
       font-weight: 300;
       color: #000;
-      letter-spacing: 0.01em;
-    }
-
-    .contact__portrait {
-      position: absolute;
-      left: 1044px;
-      top: 227px;
-      width: 336px;
-      height: 643px;
-      object-fit: cover;
-      object-position: top center;
+      margin-bottom: calc(var(--gap) * 1.5);
     }
 
     .contact__text {
-      position: absolute;
-      left: 174px;
-      top: 330px;
-      width: 647px;
-      font-size: 34px;
+      font-size: clamp(0.9rem, 2.36vw, 2.125rem);
       font-weight: 500;
-      color: #9c9a9a;
+      color: var(--color-muted);
       line-height: 1.45;
+      margin-bottom: calc(var(--gap) * 1.5);
     }
 
-    .contact__cta {
-      position: absolute;
-      left: 327px;
-      top: 611px;
+    .contact__portrait {
+      width: 23.33%;
+      aspect-ratio: 336 / 643;
+      object-fit: cover;
+      object-position: top center;
+      flex-shrink: 0;
     }
 
-    /* ── BUTTONS ──────────────────────────────────────── */
+    /* ── BUTTONS ───────────────────────────────────────────────── */
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 342px;
-      height: 57px;
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-      font-size: 24px;
+      padding: 0.75em 2.5em;
+      font-family: inherit;
+      font-size: clamp(0.875rem, 1.67vw, 1.5rem);
       font-weight: 700;
       letter-spacing: 0.06em;
       text-decoration: none;
-      cursor: pointer;
+      white-space: nowrap;
     }
 
-    .btn--white {
-      background: #fff;
-      color: #252525;
-    }
+    .btn--white { background: #fff;  color: var(--color-dark); }
+    .btn--black { background: #000;  color: #fff; }
 
-    .btn--black {
-      background: #000;
-      color: #fff;
-    }
-
-    /* ── FOOTER ───────────────────────────────────────── */
+    /* ── FOOTER ────────────────────────────────────────────────── */
     footer {
-      position: relative;
-      width: 1440px;
-      height: 170px;
       background: #000;
+      padding: 3% var(--px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
     }
 
     .footer__name {
-      position: absolute;
-      left: 60px;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 50px;
+      font-size: clamp(1.375rem, 3.47vw, 3.125rem);
       font-weight: 500;
       color: #fff;
       letter-spacing: -0.01em;
@@ -262,68 +229,104 @@
     }
 
     .footer__socials {
-      position: absolute;
-      right: 95px;
-      top: 50%;
-      transform: translateY(-50%);
       display: flex;
       align-items: center;
-      gap: 15px;
+      gap: 0.75rem;
+      flex-shrink: 0;
     }
 
-    .footer__socials a {
-      display: flex;
-      align-items: center;
-    }
+    .footer__socials a { display: flex; align-items: center; }
 
-    .footer__socials .icon-instagram {
-      width: 40px;
-      height: 40px;
+    .icon-instagram {
+      width: clamp(1.375rem, 2.78vw, 2.5rem);
+      height: clamp(1.375rem, 2.78vw, 2.5rem);
       fill: #fff;
     }
 
-    .footer__socials .icon-whatsapp {
-      width: 35px;
-      height: 35px;
+    .icon-whatsapp {
+      width: clamp(1.125rem, 2.43vw, 2.1875rem);
+      height: clamp(1.125rem, 2.43vw, 2.1875rem);
       object-fit: contain;
+    }
+
+    /* ── TABLET  (< 1024px) ────────────────────────────────────── */
+    @media (max-width: 1023px) {
+      .portfolio__grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* ── MOBILE  (< 768px) ─────────────────────────────────────── */
+    @media (max-width: 767px) {
+      .hero {
+        aspect-ratio: unset;
+        min-height: 100svh;
+      }
+
+      .hero__tagline-top { padding-left: 0; }
+
+      .artist__body { flex-direction: column; }
+      .artist__portrait { width: 55%; aspect-ratio: 1 / 2; }
+      .artist__texts { padding-top: 0; }
+
+      .portfolio__grid { grid-template-columns: repeat(2, 1fr); }
+
+      .contact { flex-direction: column; }
+      .contact__portrait {
+        order: -1;
+        width: 50%;
+        align-self: flex-end;
+      }
+    }
+
+    /* ── SMALL MOBILE  (< 480px) ───────────────────────────────── */
+    @media (max-width: 479px) {
+      .portfolio__grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ── HERO ───────────────────────────────────────── -->
+  <!-- ── HERO ──────────────────────────────────────────────── -->
   <section class="hero">
     <img class="hero__bg" src="images/hero_bg.jpg" alt="">
-    <div class="hero__gradient-overlay"></div>
-    <h1 class="hero__title">YGOR FRANÇA</h1>
-    <div class="hero__divider"></div>
-    <p class="hero__tagline-light">ELEVE A SUA</p>
-    <p class="hero__tagline-bold">IDENTIDADE ARTÍSTICA</p>
+    <div class="hero__inner">
+      <h1 class="hero__title">YGOR FRANÇA</h1>
+      <div class="hero__bottom">
+        <div class="hero__divider"></div>
+        <div class="hero__taglines">
+          <span class="hero__tagline-top">ELEVE A SUA</span>
+          <span class="hero__tagline-bottom">IDENTIDADE ARTÍSTICA</span>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <!-- ── ARTIST ─────────────────────────────────────── -->
+  <!-- ── ARTIST ────────────────────────────────────────────── -->
   <section class="artist">
     <p class="artist__label">O ARTISTA</p>
-    <img class="artist__portrait" src="images/portrait1.jpg" alt="Ygor França">
-    <p class="artist__bio1">
-      Ygor é conhecido pelo realismo preto e cinza, marcado por sombras suaves,
-      contrastes equilibrados e composições que valorizam o fluxo natural do corpo.
-      Suas tatuagens são desenvolvidas para envelhecer de forma sólida, mantendo
-      presença, leitura e harmonia ao longo do tempo.
-    </p>
-    <p class="artist__bio2">
-      Seu trabalho frequentemente explora retratos, imagens simbólicas e elementos
-      narrativos, combinando técnica e direção artística em peças com identidade
-      própria. Cada trabalho é desenvolvido com atenção à composição, garantindo
-      que textura, contraste e detalhes reforcem a história da peça sem comprometer
-      sua leitura.<br><br>
-      A relação entre design e anatomia define a composição, criando tatuagens com
-      fluxo, equilíbrio e presença, pensadas para se integrar ao corpo de forma
-      natural e atemporal.
-    </p>
+    <div class="artist__body">
+      <img class="artist__portrait" src="images/portrait1.jpg" alt="Ygor França">
+      <div class="artist__texts">
+        <p class="artist__bio1">
+          Ygor é conhecido pelo realismo preto e cinza, marcado por sombras suaves,
+          contrastes equilibrados e composições que valorizam o fluxo natural do corpo.
+          Suas tatuagens são desenvolvidas para envelhecer de forma sólida, mantendo
+          presença, leitura e harmonia ao longo do tempo.
+        </p>
+        <p class="artist__bio2">
+          Seu trabalho frequentemente explora retratos, imagens simbólicas e elementos
+          narrativos, combinando técnica e direção artística em peças com identidade
+          própria. Cada trabalho é desenvolvido com atenção à composição, garantindo
+          que textura, contraste e detalhes reforcem a história da peça sem comprometer
+          sua leitura.<br><br>
+          A relação entre design e anatomia define a composição, criando tatuagens com
+          fluxo, equilíbrio e presença, pensadas para se integrar ao corpo de forma
+          natural e atemporal.
+        </p>
+      </div>
+    </div>
   </section>
 
-  <!-- ── PORTFOLIO ──────────────────────────────────── -->
+  <!-- ── PORTFOLIO ─────────────────────────────────────────── -->
   <section class="portfolio">
     <div class="portfolio__grid">
       <img src="images/portfolio.jpg" alt="Trabalho 1">
@@ -338,30 +341,31 @@
     </div>
   </section>
 
-  <!-- ── CONTACT ────────────────────────────────────── -->
+  <!-- ── CONTACT ────────────────────────────────────────────── -->
   <section class="contact">
-    <p class="contact__title">transforme sua ideia em arte.</p>
-    <img class="contact__portrait" src="images/portrait2.jpg" alt="Ygor França">
-    <p class="contact__text">
-      Através do realismo preto e cinza, desenvolvo peças pensadas para valorizar
-      o fluxo natural do corpo, mantendo presença, contraste e identidade ao longo
-      do tempo. Mais do que estética, cada trabalho carrega intenção e conexão
-      com a sua história.
-    </p>
-    <div class="contact__cta">
+    <div class="contact__left">
+      <p class="contact__title">transforme sua ideia em arte.</p>
+      <p class="contact__text">
+        Através do realismo preto e cinza, desenvolvo peças pensadas para valorizar
+        o fluxo natural do corpo, mantendo presença, contraste e identidade ao longo
+        do tempo. Mais do que estética, cada trabalho carrega intenção e conexão
+        com a sua história.
+      </p>
       <a href="#" class="btn btn--black">QUERO SABER MAIS</a>
     </div>
+    <img class="contact__portrait" src="images/portrait2.jpg" alt="Ygor França">
   </section>
 
-  <!-- ── FOOTER ─────────────────────────────────────── -->
+  <!-- ── FOOTER ─────────────────────────────────────────────── -->
   <footer>
     <span class="footer__name">YGOR FRANÇA</span>
     <div class="footer__socials">
       <a href="#" aria-label="Instagram">
         <svg class="icon-instagram" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058
-            1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664
-            4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849
+          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919
+            4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069
+            4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204
+            0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849
             0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919
             1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78
             2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072
