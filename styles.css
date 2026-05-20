@@ -154,6 +154,7 @@ section,
   height: 100%;
   object-fit: cover;
   object-position: top center;
+  border-radius: 5px;
 }
 
 .artist__texts {
@@ -359,6 +360,18 @@ footer {
   .portfolio__grid {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(3, 1fr);
+  }
+
+  .contact__row {
+    flex-direction: column;
+  }
+
+  .contact__portrait {
+    flex: 0 0 auto;
+    width: 100%;
+    height: fit-content;
+    object-position: center 20%;
+    border-radius: 5px;
   }
 
 }
