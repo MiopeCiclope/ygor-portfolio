@@ -211,6 +211,13 @@ section,
   height: 100%;
   object-fit: cover;
   border-radius: 5px;
+  filter: grayscale(100%);
+  transition: filter 0.35s ease, transform 0.35s ease;
+}
+
+.portfolio__item:hover img {
+  filter: grayscale(0%);
+  transform: scale(1.05);
 }
 
 .portfolio__overlay {
@@ -377,5 +384,19 @@ footer {
     height: 70%;
     object-position: center 20%;
     border-radius: 5px;
+  }
+}
+
+/* ── MOBILE  (≤ 767px) landscape ─────────────────────────── */
+@media (max-width: 767px) and (orientation: landscape) {
+  .contact__row {
+    flex-direction: row;
+  }
+
+  .contact__portrait {
+    flex: 0 0 25%;
+    width: 25%;
+    height: 100%;
+    object-position: top center;
   }
 }
