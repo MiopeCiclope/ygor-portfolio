@@ -30,10 +30,20 @@ img {
 
 /* Every section is exactly one viewport tall, no overflow */
 section,
-footer {
+.contact-footer {
   scroll-snap-align: start;
   height: 100svh;
   overflow: hidden;
+}
+
+.contact-footer {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-footer .contact {
+  flex: 1;
+  min-height: 0;
 }
 
 /* ── HERO ──────────────────────────────────────────────────── */
