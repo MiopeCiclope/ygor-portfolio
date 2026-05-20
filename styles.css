@@ -1,0 +1,289 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-snap-type: y mandatory; }
+
+:root {
+  --px:  clamp(1.25rem, 4.17vw, 3.75rem);
+  --gap: clamp(0.75rem, 1.5vw, 1.5rem);
+  --color-dark:  #252525;
+  --color-grey:  #5b5b5b;
+  --color-muted: #9c9a9a;
+}
+
+body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background: #fff;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+img { display: block; }
+
+/* Every section is exactly one viewport tall, no overflow */
+section, footer {
+  scroll-snap-align: start;
+  height: 100svh;
+  overflow: hidden;
+}
+
+/* ── HERO ──────────────────────────────────────────────────── */
+.hero { position: relative; }
+
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+}
+
+.hero__inner {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 13% var(--px) 3%;
+}
+
+.hero__title {
+  font-size: clamp(2.5rem, 8.33vw, 7.5rem);
+  font-weight: 500;
+  color: #fff;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.hero__divider {
+  width: 100%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.6);
+  margin-bottom: 1%;
+}
+
+.hero__tagline-top {
+  display: block;
+  padding-left: 54%;
+  font-size: clamp(1.5rem, 6.94vw, 6.25rem);
+  font-weight: 300;
+  color: #fff;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+
+.hero__tagline-bottom {
+  display: block;
+  font-size: clamp(1.5rem, 6.94vw, 6.25rem);
+  font-weight: 500;
+  color: #fff;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+
+/* ── ARTIST ────────────────────────────────────────────────── */
+/* Grid: label row (auto) + body row (fills remaining height) */
+.artist {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: var(--gap);
+  padding: var(--px);
+}
+
+.artist__label {
+  font-size: clamp(1.25rem, 2.85vw, 2.5rem);
+  font-weight: 300;
+  color: var(--color-grey);
+  letter-spacing: 0.04em;
+}
+
+.artist__body {
+  min-height: 0;        /* allow shrinking inside grid row */
+  display: flex;
+  align-items: stretch;
+  gap: var(--px);
+}
+
+/* Portrait fills the body row height; width follows aspect ratio */
+.artist__portrait {
+  flex: 0 0 auto;
+  max-width: 28%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.artist__texts {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--gap);
+  overflow: hidden;
+}
+
+.artist__bio1 {
+  font-size: clamp(1rem, 2.5vw, 2.25rem);
+  font-weight: 500;
+  color: var(--color-grey);
+  line-height: 1.35;
+}
+
+.artist__bio2 {
+  font-size: clamp(0.85rem, 2vw, 2rem);
+  font-weight: 500;
+  color: var(--color-muted);
+  line-height: 1.45;
+}
+
+/* ── PORTFOLIO ─────────────────────────────────────────────── */
+/* Grid: image grid (fills height) + CTA (auto) */
+.portfolio {
+  background: var(--color-dark);
+  display: grid;
+  grid-template-rows: 1fr auto;
+  gap: var(--gap);
+  padding: var(--px);
+}
+
+.portfolio__grid {
+  min-height: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: clamp(0.25rem, 1vw, 1rem);
+}
+
+.portfolio__grid img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.portfolio__cta {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ── CONTACT ───────────────────────────────────────────────── */
+.contact {
+  display: flex;
+  align-items: center;
+  gap: var(--px);
+  padding: var(--px);
+}
+
+.contact__left {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--gap);
+}
+
+.contact__title {
+  font-size: clamp(1.25rem, 2.85vw, 2.5rem);
+  font-weight: 300;
+  color: #000;
+}
+
+.contact__text {
+  font-size: clamp(0.85rem, 2vw, 2rem);
+  font-weight: 500;
+  color: var(--color-muted);
+  line-height: 1.45;
+}
+
+/* Portrait is height-anchored so it never exceeds the viewport */
+.contact__portrait {
+  flex: 0 0 auto;
+  height: 70svh;
+  max-width: 35%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+/* ── BUTTONS ───────────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75em 2.5em;
+  font-family: inherit;
+  font-size: clamp(0.875rem, 1.67vw, 1.5rem);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.btn--white { background: #fff; color: var(--color-dark); }
+.btn--black { background: #000; color: #fff; }
+
+/* ── FOOTER ────────────────────────────────────────────────── */
+footer {
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--px);
+  gap: 1rem;
+}
+
+.footer__name {
+  font-size: clamp(1.375rem, 3.47vw, 3.125rem);
+  font-weight: 500;
+  color: #fff;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+.footer__socials {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+.footer__socials a { display: flex; align-items: center; }
+
+.icon-instagram {
+  width: clamp(1.375rem, 2.78vw, 2.5rem);
+  height: clamp(1.375rem, 2.78vw, 2.5rem);
+  fill: #fff;
+}
+
+.icon-whatsapp {
+  width: clamp(1.125rem, 2.43vw, 2.1875rem);
+  height: clamp(1.125rem, 2.43vw, 2.1875rem);
+  object-fit: contain;
+}
+
+/* ── TABLET  (≤ 1023px) ────────────────────────────────────── */
+@media (max-width: 1023px) {
+  .portfolio__grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(3, 1fr); }
+}
+
+/* ── MOBILE  (≤ 767px) ─────────────────────────────────────── */
+@media (max-width: 767px) {
+  .hero__tagline-top { padding-left: 0; }
+
+  .artist__portrait { max-width: 40%; }
+
+  .portfolio__grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(3, 1fr); }
+
+  .contact {
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .contact__portrait {
+    order: -1;
+    height: 35svh;
+    max-width: 60%;
+    align-self: flex-end;
+  }
+}
