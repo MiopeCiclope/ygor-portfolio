@@ -221,9 +221,21 @@ footer {
 /* ── CONTACT ───────────────────────────────────────────────── */
 .contact {
   display: flex;
-  align-items: center;
-  gap: var(--px);
+  flex-direction: column;
+  gap: var(--gap);
   padding: var(--px);
+}
+
+.contact__title {
+  font-size: clamp(1.25rem, 2.85vw, 2.5rem);
+  font-weight: 300;
+  color: #000;
+}
+
+.contact__row {
+  display: flex;
+  align-items: stretch;
+  gap: var(--px);
 }
 
 .contact__left {
@@ -235,12 +247,6 @@ footer {
   gap: var(--gap);
 }
 
-.contact__title {
-  font-size: clamp(1.25rem, 2.85vw, 2.5rem);
-  font-weight: 300;
-  color: #000;
-}
-
 .contact__text {
   font-size: clamp(0.85rem, 2vw, 2rem);
   font-weight: 500;
@@ -248,11 +254,11 @@ footer {
   line-height: 1.45;
 }
 
-/* Portrait is height-anchored so it never exceeds the viewport */
 .contact__portrait {
-  flex: 0 0 auto;
-  height: 70svh;
-  max-width: 35%;
+  flex: 0 0 25%;
+  width: 25%;
+  height: 100%;
+  align-self: stretch;
   object-fit: cover;
   object-position: top center;
 }
@@ -345,15 +351,4 @@ footer {
     grid-template-rows: repeat(3, 1fr);
   }
 
-  .contact {
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  .contact__portrait {
-    order: -1;
-    height: 35svh;
-    max-width: 60%;
-    align-self: flex-end;
-  }
 }
